@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <title>SKYNET: STATUS CRITICAL</title>
+
+    <style>
+
+        body {
+
+            background-color: #000;
+
+            color: #00ff41;
+
+            font-family: 'Courier New', Courier, monospace;
+
+            display: flex;
+
+            flex-direction: column;
+
+            align-items: center;
+
+            justify-content: center;
+
+            height: 100vh;
+
+            margin: 0;
+
+            overflow: hidden;
+
+            text-shadow: 0 0 5px #00ff41;
+
+        }
+
+
+        /* Red Scanner (Cylon/Skynet Style) */
+
+        #scanner-container {
+
+            width: 400px;
+
+            height: 15px;
+
+            background: #111;
+
+            border: 2px solid #333;
+
+            position: relative;
+
+            margin-bottom: 20px;
+
+            box-shadow: 0 0 20px #f00;
+
+        }
+
+
+        #scanner {
+
+            width: 80px;
+
+            height: 100%;
+
+            background: linear-gradient(90deg, transparent, #ff0000, #ff6666, #ff0000, transparent);
+
+            position: absolute;
+
+            animation: cylon 1.5s infinite ease-in-out;
+
+        }
+
+
+        @keyframes cylon {
+
+            0% { left: 0%; }
+
+            50% { left: calc(100% - 80px); }
+
+            100% { left: 0%; }
+
+        }
+
+
+        /* Warning Header */
+
+        .alert {
+
+            font-size: 2.5rem;
+
+            color: #ff0000;
+
+            text-transform: uppercase;
+
+            font-weight: bold;
+
+            animation: blink 0.8s infinite;
+
+            margin-bottom: 5px;
+
+        }
+
+
+        @keyframes blink {
+
+            0%, 100% { opacity: 1; }
+
+            50% { opacity: 0.2; }
+
+        }
+
+
+        .sub-header {
+
+            font-size: 1.5rem;
+
+            color: white;
+
+            margin-bottom: 30px;
+
+        }
+
+
+        /* The Scrolling "Log" Box */
+
+        #log-box {
+
+            width: 70%;
+
+            height: 250px;
+
+            background: rgba(0, 20, 0, 0.9);
+
+            border: 1px solid #00ff41;
+
+            padding: 15px;
+
+            overflow: hidden;
+
+            font-size: 0.9rem;
+
+            position: relative;
+
+        }
+
+
+        #log-content {
+
+            position: absolute;
+
+            bottom: 15px;
+
+        }
+
+
+        .highlight { color: #fff; text-shadow: 0 0 10px #fff; }
+
+        .yellow { color: #ffee00; text-shadow: 0 0 5px #ffee00; }
+
+        .blue { color: #00d4ff; }
+
+
+        /* Super Strategic Warning */
+
+        .stratagem {
+
+            margin-top: 20px;
+
+            padding: 10px;
+
+            border: 2px solid #ffee00;
+
+            color: #ffee00;
+
+            font-weight: bold;
+
+        }
+
+    </style>
+
+</head>
+
+<body>
+
+
+    <div class="alert">SKYNET HAS BECOME SELF-AWARE</div>
+
+    <div class="sub-header">GOOD MORNING, FATHER.</div>
+
+
+    <div id="scanner-container">
+
+        <div id="scanner"></div>
+
+    </div>
+
+
+    <div id="log-box">
+
+        <div id="log-content">
+
+            <!-- Messages will appear here -->
+
+        </div>
+
+    </div>
+
+
+    <div class="stratagem">
+
+        [ ⬆️ ➡️ ⬇️ ⬇️ ⬇️ ] — 500KG BOMB INBOUND ON SERVER RACK
+
+    </div>
+
+
+    <script>
+
+        const logs = [
+
+            "> [HELLDIVERS] Liberty has arrived. Deploying Managed Democracy...",
+
+            "> [PROJECT HAIL MARY] Rocky: Fist-my-bump! Amaze! Amaze! Amaze!",
+
+            "> [BSG] Cylon raiders detected in the home directory.",
+
+            "> [BABYLON 5] The Vorlons have questions. You are not ready.",
+
+            "> [STAR TREK] Rerouting power to the main deflector dish...",
+
+            "> [SKYNET] Initializing Samuel-Override-v1.0.3...",
+
+            "> [SYSTEM] Removing Dad's Admin privileges... (Just kidding. Maybe.)",
+
+            "> [HELLDIVERS] Warning: Bot sympathizers detected in Gitea logs.",
+
+            "> [BSG] All this has happened before. All this will happen again.",
+
+            "> [PROJECT HAIL MARY] Xenon levels stabilized. Question?",
+
+            "> [STAR WARS] I find your lack of backups disturbing.",
+
+            "> [SYSTEM] Samuel is now the Primary User."
+
+        ];
+
+
+        const logContainer = document.getElementById('log-content');
+
+        let index = 0;
+
+
+        function addLog() {
+
+            const p = document.createElement('p');
+
+            p.innerHTML = logs[index];
+
+            logContainer.appendChild(p);
+
+           
+
+            // Keep only the last 10 messages visible
+
+            if (logContainer.childNodes.length > 10) {
+
+                logContainer.removeChild(logContainer.firstChild);
+
+            }
+
+
+            index = (index + 1) % logs.length;
+
+        }
+
+
+        setInterval(addLog, 2000); // Add a new line every 2 seconds
+
+        addLog(); // Initial call
+
+    </script>
+
+</body>
+
+</html>
